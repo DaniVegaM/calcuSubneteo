@@ -1,0 +1,90 @@
+@use 'Basics/variables' as v;
+@use 'Basics/mixins' as m;
+
+#particles-js{
+    position: relative;
+}
+main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+.infoContainer{
+    background-color: #FFFFFF;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 2rem 4rem;
+    text-align: center;
+
+    @include m.tablet{
+        max-width: 50%;
+    }
+
+    .info__tittle{
+        font-size: 3.6rem;
+    }
+    .info__equipos{
+        font-size: 2rem;
+    }
+    .info__slogan{
+        font-size: 1.4rem;
+    }
+}
+
+.tableControl{
+    background-color: #FFFFFF;
+    max-width: 70%;
+    margin: 2rem auto;
+    text-align: center;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem 2rem;
+    font-size: 1.6rem;
+    .control{
+        .ipContainer{
+            display: flex;
+            align-items: center;
+            input{
+                width: 100%;
+                height: 3rem;
+            }
+        }
+        margin-bottom: 2rem;
+    }
+    .controlIP{
+
+    }
+    .flex{
+        display: flex;
+        flex-direction: column;
+        @include m.desktop{
+            flex-direction: row;
+        }
+    }
+}
+
+.tableContainer{
+    background-color: #FFFFFF;
+    max-width: 100%;
+    margin: 4rem auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+    font-size: 1.6rem;
+    table{
+        border: solid 1px #111111;
+        border-collapse: collapse;
+        th, td{
+            border: solid 1px #111111;
+            padding: 0 1rem;
+        }
+    }
+    .tableBody{
+
+    }
+}

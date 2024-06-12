@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subnetting Calculator</title>
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body>
+    <div id="particles-js">
+    </div>
+    <main>
+        <div class="infoContainer">
+            <h1 class="info__tittle">Calculadora de <span>Subnetting</span></h1>
+            <p class="info__equipos">Patitos de Hule & Cats with headsets</p>
+            <p class="info__slogan">"Dos potencias se unen"</p>
+        </div>
+
+        <div class="tableControl">
+            <div class="control controlIP">
+                <label for="">Dirección IP</label>
+                <div class="ipContainer">
+                    <input type="text">
+                    <p>.</p>  
+                    <input type="text">
+                    <p>.</p>
+                    <input type="text">
+                    <p>.</p>
+                    <input type="text">
+                </div>
+            </div>
+            <div class="flex">
+                <div class="control">
+                    <label for="">Máscara de Red</label>
+                    <select name="" id="">
+                        <option value="N" disabled selected>--> Selecciona una opcion <--</option>
+                        <option value="A">--> 255.0.0.0 <--</option>
+                        <option value="B">--> 255.255.0.0 <--</option>
+                        <option value="C">--> 255.255.255.0 <--</option>
+                    </select>
+                </div>
+                <div class="control">
+                    <label for="">Número de Subredes</label>
+                    <select class="numSubredes" id="numSubredes">
+                        <option value="S1">1</option>
+                        <option value="S2">2</option>
+                        <option value="S3">4</option>
+                        <option value="S4">8</option>
+                        <option value="S5">16</option>
+                        <option value="S6">32</option>
+                        <option value="S7">64</option>
+                        <option value="S8">128</option>
+                        <option value="S9">256</option>
+                        <option value="S10">512</option>
+                        <option value="S11">1,024</option>
+                        <option value="S12">2,048</option>
+                        <option value="S13">4,096</option>
+                        <option value="S14">8,192</option>
+                        <option value="S15">16,384</option>
+                        <option value="S16">32,768</option>
+                        <option value="S17">65,536</option>
+                        <option value="S18">131,072</option>
+                        <option value="S19">262,144</option>
+                        <option value="S20">524,288</option>
+                        <option value="S21">1,048,576</option>
+                        <option value="S22">2,097,152</option>
+                        <option value="S23">4,194,304</option>
+                        <option value="S24">8,388,608</option>
+                        <option value="S25">16,777,216</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="tableContainer">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Dirección de Subred</th>
+                        <th>IP Inicial</th>
+                        <th>IP Final</th>
+                        <th>Dirección de Broadcast</th>
+                        <th>Mascara de Red</th>
+                    </tr>
+                    <div id="tableBody" class="tableBody">
+
+                    </div>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script src="../js/particlesBase.js"></script>
+    <script src="../js/particles.js"></script>
+    <script src="../js/function.js"></script>
+</body>
+
+</html>
