@@ -21,20 +21,20 @@
         <div class="tableControl">
             <div class="control controlIP">
                 <label for="">Dirección IP</label>
-                <div class="ipContainer">
-                    <input type="text">
+                <div class="ipContainer" id="ipContainer">
+                    <input id="ip1" type="text" maxlength="3">
                     <p>.</p>  
-                    <input type="text">
+                    <input id="ip2" type="text" maxlength="3">
                     <p>.</p>
-                    <input type="text">
+                    <input id="ip3" type="text" maxlength="3">
                     <p>.</p>
-                    <input type="text">
+                    <input id="ip4" type="text" maxlength="3">
                 </div>
             </div>
             <div class="flex">
                 <div class="control">
-                    <label for="">Máscara de Red</label>
-                    <select name="" id="">
+                    <label for="mask">Máscara de Red</label>
+                    <select name="mask" id="selectMask">
                         <option value="N" disabled selected>--> Selecciona una opcion <--</option>
                         <option value="A">--> 255.0.0.0 <--</option>
                         <option value="B">--> 255.255.0.0 <--</option>
@@ -44,6 +44,7 @@
                 <div class="control">
                     <label for="">Número de Subredes</label>
                     <select class="numSubredes" id="numSubredes">
+                        <option value="SN" disabled selected>-->Selecciona una opción<--</option>
                         <option value="S1">1</option>
                         <option value="S2">2</option>
                         <option value="S3">4</option>
@@ -54,39 +55,40 @@
                         <option value="S8">128</option>
                         <option value="S9">256</option>
                         <option value="S10">512</option>
-                        <option value="S11">1,024</option>
-                        <option value="S12">2,048</option>
-                        <option value="S13">4,096</option>
-                        <option value="S14">8,192</option>
-                        <option value="S15">16,384</option>
-                        <option value="S16">32,768</option>
-                        <option value="S17">65,536</option>
-                        <option value="S18">131,072</option>
-                        <option value="S19">262,144</option>
-                        <option value="S20">524,288</option>
-                        <option value="S21">1,048,576</option>
-                        <option value="S22">2,097,152</option>
-                        <option value="S23">4,194,304</option>
-                        <option value="S24">8,388,608</option>
-                        <option value="S25">16,777,216</option>
+                        <option value="S11">1024</option>
+                        <option value="S12">2048</option>
+                        <option value="S13">4096</option>
+                        <option value="S14">8192</option>
+                        <option value="S15">16384</option>
+                        <option value="S16">32768</option>
+                        <option value="S17">65536</option>
+                        <option value="S18">131072</option>
+                        <option value="S19">262144</option>
+                        <option value="S20">524288</option>
+                        <option value="S21">1048576</option>
+                        <option value="S22">2097152</option>
+                        <option value="S23">4194304</option>
+                        <option value="S24">8388608</option>
+                        <option value="S25">16777216</option>
                     </select>
+                </div>
+                <div class="buttonContainer">
+                    <button id="button">Haz el Calculin</button>
                 </div>
             </div>
         </div>
 
         <div class="tableContainer">
             <table>
-                <tbody>
+                <tbody id="tableBody">
                     <tr>
+                        <th>Número de red</th>
                         <th>Dirección de Subred</th>
                         <th>IP Inicial</th>
                         <th>IP Final</th>
                         <th>Dirección de Broadcast</th>
                         <th>Mascara de Red</th>
                     </tr>
-                    <div id="tableBody" class="tableBody">
-
-                    </div>
                 </tbody>
             </table>
         </div>
