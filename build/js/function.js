@@ -68,6 +68,14 @@ selectSubRedes.addEventListener("change", ()=>{
 });
 
 button.addEventListener("click", ()=>{
+    tableBody.innerHTML = `<tr>
+                        <th>Número de red</th>
+                        <th>Dirección de Subred</th>
+                        <th>IP Inicial</th>
+                        <th>IP Final</th>
+                        <th>Dirección de Broadcast</th>
+                        <th>Mascara de Red</th>
+                    </tr>`;
     generarTabla();
 });
 
@@ -77,31 +85,138 @@ function generarTabla (){
     switch(clase){
         case 'A':
             dirSubred = ip1;
-            cerosSubred = ".0.0";
+            // cerosSubred = ".0.0";
             mask = "/8";
         break;
         case 'B':
             dirSubred = ip1 + "." + ip2;
-            cerosSubred = ".0";
+            // cerosSubred = ".0";
             mask = "/16";
         break;
         case 'C':
             dirSubred = ip1 + "." + ip2 + "." + ip3;
-            cerosSubred = "";
+            // cerosSubred = "";
             mask = "/24";
         break;
     }
 
-    for(i = numSubredes; i >= 1; i--){
-        tableBody.insertAdjacentHTML("afterend", 
+    for(i = 1; i <= numSubredes; i++){
+        tableBody.insertAdjacentHTML("beforeend", 
             `<tr>
                 <th>${i}</th>
-                <th>${dirSubred + "." + ((salto * i) - salto) + cerosSubred}</th>
-                <th>${dirSubred + "." + ((salto * i) - salto) + cerosSubred.slice(0, -1) + "1"}</th>
-                <th>${dirSubred + "." + ((salto * (i+1)) - salto - 1) + cerosSubred.slice(0, -1) + "254"}</th>
-                <th>${dirSubred + "." + ((salto * (i+1)) - salto - 1) + cerosSubred.slice(0, -1) + "255"}</th>
+                <th>${dirSubred + "." + genSalto1() + genPartDir()}</th>
+                <th>${dirSubred + "." + genSalto11() + genPartInit()}</th>
+                <th>${dirSubred + "." +  genSalto22() + genPartFinal()}</th>
+                <th>${dirSubred + "." +  genSalto2() + genPartBroadcast()}</th>
                 <th>${mask}</th>
             </tr>`); 
     }
     
+}
+
+
+
+function genSalto1(){
+    switch(clase){
+        case 'A':
+            return ((salto * i) - salto)
+        break;
+        case 'B':
+            return ((salto * i) - salto)
+        break;
+        case 'C':
+            return ((salto * i) - salto)
+        break;
+    }
+}
+function genSalto11(){
+    switch(clase){
+        case 'A':
+            return ((salto * i) - salto)
+        break;
+        case 'B':
+            return ((salto * i) - salto)
+        break;
+        case 'C':
+            return ((salto * i) - salto + 1)
+        break;
+    }
+}
+function genSalto22(){
+    switch(clase){
+        case 'A':
+            return ((salto * (i+1)) - salto - 1)
+        break;
+        case 'B':
+            return ((salto * (i+1)) - salto - 1)
+        break;
+        case 'C':
+            return ((salto * (i+1)) - salto - 2)
+        break;
+    }
+}
+function genSalto2(){
+    switch(clase){
+        case 'A':
+            return ((salto * (i+1)) - salto - 1)
+        break;
+        case 'B':
+            return ((salto * (i+1)) - salto - 1)
+        break;
+        case 'C':
+            return ((salto * (i+1)) - salto - 1)
+        break;
+    }
+}
+function genPartDir(){
+    switch(clase){
+        case 'A':
+            return ".0.0"
+        break;
+        case 'B':
+            return ".0"
+        break;
+        case 'C':
+            return ""
+        break;
+    }
+}
+function genPartInit(){
+    switch(clase){
+        case 'A':
+            return ".0.1"
+        break;
+        case 'B':
+            return ".1"
+        break;
+        case 'C':
+            return "" //Checar detalle para ver si se elimina parte del salto en clase C
+        break;
+    }
+}
+function genPartFinal(){
+    switch(clase){
+        case 'A':
+            return ".255.254"
+        break;
+        case 'B':
+            return ".254"
+        break;
+        case 'C':
+            return "" //Checar detalle para ver si se elimina parte del salto en clase C
+        break;
+    }
+}
+function genPartBroadcast(){
+    switch(clase){
+        case 'A':
+            return ".255.255"
+        break;
+        case 'B':
+            return ".255"
+        break;
+        case 'C':
+            return "" //Checar detalle para ver si se elimina parte del salto en clase C
+        break;
+    }
 }

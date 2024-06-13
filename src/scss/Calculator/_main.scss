@@ -20,7 +20,7 @@ main{
     text-align: center;
 
     @include m.tablet{
-        max-width: 50%;
+        max-width: 100%;
     }
 
     .info__tittle{
