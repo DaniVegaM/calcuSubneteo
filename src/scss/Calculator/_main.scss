@@ -1,49 +1,82 @@
 @use 'Basics/variables' as v;
 @use 'Basics/mixins' as m;
 
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    // overflow-x: hidden;
+}
+
 #particles-js{
-    position: relative;
+    // position: relative;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    height: 100%;
 }
 main{
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    // position: absolute;
+    // top: 100%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    position: relative;
+    z-index: 1;
     width: 80%;
+    margin: 10rem auto;
+    padding-bottom: 10rem;
+    box-sizing: border-box;
 }
 
 .infoContainer{
     background-color: #FFFFFF;
-    max-width: 80%;
     margin: 0 auto;
     padding: 2rem 4rem;
     text-align: center;
-
-    @include m.tablet{
-        max-width: 100%;
-    }
-
+    border-radius: 4rem;
+    background-color: #f1faee;
     .info__tittle{
         font-size: 3.6rem;
+        color: #ffc300;
+        font-family: "DM Sans", sans-serif;
+        span{
+            color: #001d3d;
+            text-transform: uppercase;
+            
+        }
     }
     .info__equipos{
         font-size: 2rem;
     }
     .info__slogan{
-        font-size: 1.4rem;
+        font-size: 1.8rem;
+        font-family: "Caveat", cursive;
     }
 }
 
 .tableControl{
     background-color: #FFFFFF;
-    max-width: 70%;
+    max-width: 100%;
     margin: 2rem auto;
     text-align: center;
     justify-content: space-evenly;
     align-items: center;
     gap: 2rem;
-    padding: 4rem 2rem;
+    padding: 4rem 4rem;
     font-size: 1.6rem;
+    border-radius: 2rem;
+    background-color: #f1faee;
+    @include m.tablet{
+        max-width: 85%;
+    }
+    .label{
+        font-size: 1.6rem;
+        color: #001d3d;
+        font-family: "DM Sans", sans-serif;
+        font-weight: bold;
+    }
     .control{
         .ipContainer{
             display: flex;
@@ -51,6 +84,12 @@ main{
             input{
                 width: 100%;
                 height: 3rem;
+            }
+            #ip1, #ip2, #ip3, #ip4{
+                &:focus{
+                    border-color: #003566;
+                    outline: none;
+                }
             }
         }
         margin-bottom: 2rem;
@@ -75,21 +114,40 @@ main{
     max-width: 100%;
     max-height: 60rem;
     overflow-y: auto;
+    overflow-x: auto;
     margin: 4rem auto;
     text-align: center;
-    display: flex;
-    justify-content: center;
+    border-radius: 1rem;
+    background-color: #f1faee;
+    // display: flex;
+    // justify-content: center;
     padding: 2rem 1rem;
     font-size: 1.6rem;
     table{
         border: solid 1px #111111;
         border-collapse: collapse;
+        min-width: 100%;
+        .thead{
+            background-color: #003566;
+            color: v.$blanco;
+        }
         th, td{
             border: solid 1px #111111;
             padding: 0 1rem;
+        }
+        tr:nth-child(even){
+            background-color:#dde7f0;
         }
     }
     .tableBody{
 
     }
+}
+
+#selectMask, #numSubredes, input{
+    &:focus{
+        border-color: #003566;
+        outline: none;
+    }
+    text-align: center;
 }

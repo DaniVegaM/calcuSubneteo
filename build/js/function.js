@@ -3,8 +3,8 @@ let porcionRed = 0; //Porcion tomada
 let unosHost = 0; //Porcion tomada
 let numSubredes = 0;
 let ip = "0000";
-let ip1, ip2, ip3, ip4;
 let salto = "0";
+let ip1, ip2, ip3, ip4;
 let clase;
 let mask;
 
@@ -19,7 +19,30 @@ const button = document.getElementById("button");
 const tableBody  = document.getElementById("tableBody");
 
 
-selectMask.addEventListener("change", ()=>{
+button.addEventListener("click", ()=>{
+    tableBody.innerHTML = `<tr class="thead">
+                        <th>Número de red</th>
+                        <th>Dirección de Subred</th>
+                        <th>IP Inicial</th>
+                        <th>IP Final</th>
+                        <th>Dirección de Broadcast</th>
+                        <th>Mascara de Red</th>
+                    </tr>`;
+
+    let porcionRed = 0; //Porcion tomada
+    let unosHost = 0; //Porcion tomada
+    let numSubredes = 0;
+    let ip = "0000";
+    let salto = "0";
+    
+    fselectMask();
+    fselectIP();
+    fselectSubnet();
+    generarTabla();
+});
+
+
+function fselectMask(){
     switch(selectMask.options[selectMask.selectedIndex].value){
         case "A":
             porcionRed = 8;
@@ -37,19 +60,19 @@ selectMask.addEventListener("change", ()=>{
     }
 
     console.log(`Porcion de red: ${porcionRed}`);
-});
+};
 
-ipContainer.addEventListener("change", ()=>{
+function fselectIP(){
     ip1 = (parseInt((document.getElementById("ip1")).value, 10));
     ip2 = (parseInt((document.getElementById("ip2")).value, 10));
     ip3 = (parseInt((document.getElementById("ip3")).value, 10));
     ip4 = (parseInt((document.getElementById("ip4")).value, 10));
     ip = ip1 + "." + ip2 + "." + ip3 + "." + ip4;
     console.log(`La ip es: ${ip}`);
-});
+};
 
 
-selectSubRedes.addEventListener("change", ()=>{
+function fselectSubnet(){
     numSubredes = parseInt(selectSubRedes.options[selectSubRedes.selectedIndex].text, 10);
     console.log(`El num de subredes es: ${numSubredes}`);
     unosHost = Math.log(numSubredes) / Math.log(2);
@@ -65,19 +88,7 @@ selectSubRedes.addEventListener("change", ()=>{
         salto = 2 ** (32 - porcionRed);
     }
     console.log(`El salto es ${salto}`);
-});
-
-button.addEventListener("click", ()=>{
-    tableBody.innerHTML = `<tr>
-                        <th>Número de red</th>
-                        <th>Dirección de Subred</th>
-                        <th>IP Inicial</th>
-                        <th>IP Final</th>
-                        <th>Dirección de Broadcast</th>
-                        <th>Mascara de Red</th>
-                    </tr>`;
-    generarTabla();
-});
+};
 
 function generarTabla (){
     let cerosSubred;
@@ -220,3 +231,24 @@ function genPartBroadcast(){
         break;
     }
 }
+
+//DETALLE PARA MOVERSE ENTRE INPUTS AUTO
+
+const inputs = document.querySelectorAll('#ipContainer input[type="text"]');
+
+inputs.forEach((input, index) => {
+    input.addEventListener('input', (event) => {
+        const maxLength = event.target.getAttribute('maxlength');
+        if (event.target.value.length >= maxLength && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        }
+    });
+
+    input.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight' && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        } else if (event.key === 'ArrowLeft' && index > 0) {
+            inputs[index - 1].focus();
+        }
+    });
+});
