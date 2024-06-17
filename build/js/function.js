@@ -4,8 +4,8 @@ let unosHost = 0; //Porcion tomada
 let numSubredes = 0;
 let ip = "0000";
 let salto = "0";
-let ip1, ip2, ip3, ip4;
-let clase;
+let ip1 = "", ip2 = "", ip3 = "", ip4 = "";
+let clase = 'X';
 let mask;
 
 //Para resultados
@@ -17,7 +17,11 @@ const options = Array.from(selectSubRedes.options);
 const ipContainer = document.getElementById("ipContainer");
 const button = document.getElementById("button");
 const tableBody  = document.getElementById("tableBody");
+const lastSelect = document.getElementById("lastSelect");
 
+selectMask.addEventListener("change", ()=>{
+    fselectMask();
+});
 
 button.addEventListener("click", ()=>{
     tableBody.innerHTML = `<tr class="thead">
@@ -29,15 +33,35 @@ button.addEventListener("click", ()=>{
                         <th>Mascara de Red</th>
                     </tr>`;
 
-    let porcionRed = 0; //Porcion tomada
-    let unosHost = 0; //Porcion tomada
-    let numSubredes = 0;
-    let ip = "0000";
-    let salto = "0";
+    document.getElementById("v1").classList.add("invisible");
+    document.getElementById("v2").classList.add("invisible");
+    document.getElementById("v3").classList.add("invisible");
+
+    // let porcionRed = 0; //Porcion tomada
+    // let unosHost = 0; //Porcion tomada
+    // let salto = "0";
+    // numSubredes = 0;
+    ip = "0000";
+    mask = 'X';
     
     fselectMask();
+
+    if(clase == 'X'){
+        document.getElementById("v2").classList.remove("invisible");
+    }
+
     fselectIP();
+
+    if(ip == `${NaN}.${NaN}.${NaN}.${NaN}`){
+        document.getElementById("v1").classList.remove("invisible");
+    }
+
     fselectSubnet();
+
+    if(numSubredes == 0){
+        document.getElementById("v3").classList.remove("invisible");
+    }
+
     generarTabla();
 });
 
@@ -47,14 +71,17 @@ function fselectMask(){
         case "A":
             porcionRed = 8;
             clase = 'A';
+            lastSelect.classList.remove("invisible");
         break;
         case "B":
             porcionRed = 16;
             clase = 'B';
+            lastSelect.classList.remove("invisible");
         break;
         case "C":
             porcionRed = 24;
             clase = 'C';
+            lastSelect.classList.add("invisible");
         break;
 
     }
@@ -86,6 +113,8 @@ function fselectSubnet(){
         salto = 2 ** ((32 - porcionRed) - 8);
     } else if((32 - porcionRed) < 8){
         salto = 2 ** (32 - porcionRed);
+    } else{
+        numSubredes = 0;
     }
     console.log(`El salto es ${salto}`);
 };

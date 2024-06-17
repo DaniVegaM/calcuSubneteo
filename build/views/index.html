@@ -209,7 +209,7 @@
 
         <div class="tableControl">
             <div class="control controlIP">
-                <label class="label">Dirección IP</label>
+                <label class="label">Dirección IP:</label>
                 <div class="ipContainer" id="ipContainer">
                     <input id="ip1" type="text" maxlength="3">
                     <p>.</p>  
@@ -220,20 +220,22 @@
                     <input id="ip4" type="text" maxlength="3">
                 </div>
             </div>
+            <div class="validacion invisible" id="v1"><p>Ingresa la dirección IP por favor</p></div>
             <div class="flex">
                 <div class="control">
-                    <label class="label" for="mask">Máscara de Red</label>
+                    <label class="label" for="mask">Máscara de Red:</label>
                     <select name="mask" id="selectMask">
-                        <option value="N" disabled selected>--> Selecciona una opcion <--</option>
+                        <option value="N" disabled selected>---Selecciona una opcion---</option>
                         <option value="A">--> 255.0.0.0 <--</option>
                         <option value="B">--> 255.255.0.0 <--</option>
                         <option value="C">--> 255.255.255.0 <--</option>
                     </select>
+                    <div class="validacion invisible" id="v2"><p>Selecciona una mascara de red por favor</p></div>
                 </div>
                 <div class="control">
-                    <label class="label">Número de Subredes</label>
+                    <label class="label">Número de Subredes:</label>
                     <select class="numSubredes" id="numSubredes">
-                        <option value="SN" disabled selected>-->Selecciona una opción<--</option>
+                        <option value="SN" disabled selected>---Selecciona una opción---</option>
                         <option value="S1">1</option>
                         <option value="S2">2</option>
                         <option value="S3">4</option>
@@ -241,8 +243,9 @@
                         <option value="S5">16</option>
                         <option value="S6">32</option>
                         <option value="S7">64</option>
-                        <option value="S8">128</option>
+                        <option id="lastSelect" class="" value="S8">128</option>
                     </select>
+                    <div class="validacion invisible" id="v3"><p>Selecciona un número de subredes por favor</p></div>
                 </div>
             </div>
             <div class="voltage-button">
